@@ -5,6 +5,9 @@ import {bindActionCreators} from 'redux'; // MODO 3
 
 import * as courseActions from '../../actions/CourseActions';
 
+// Templating
+import CourseList from './CourseList';
+
 class CoursePage extends React.Component {
   /**** INITAL CREATE PROPERTIES ******/
   constructor(props, context) {
@@ -51,7 +54,12 @@ class CoursePage extends React.Component {
     return (
       <div>
         <h1>Cursos</h1>
-        {this.props.courses.map(this.courseRow)}
+        <CourseList courses={this.props.courses}/>
+
+        {/*// Old list*/}
+        {/*{this.props.courses.map(this.courseRow)}*/}
+
+        {/*// Obsolet Form*/}
         {/*<input type={'text'} onChange={this.onTitleChange}*/}
                {/*value={this.state.course.title}/>*/}
         {/*<button onClick={this.onClickSave}>Guardar</button>*/}

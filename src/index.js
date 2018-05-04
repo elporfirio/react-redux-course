@@ -12,7 +12,13 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 
+// Actions
+import {loadCourses} from './actions/CourseActions';
+
 const store = configureStore();
+store.dispatch(loadCourses());
+
+
 render(
   <Provider store={store}>
     <Router history={browserHistory} routes={routes}/>

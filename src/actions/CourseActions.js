@@ -10,13 +10,13 @@ export function loadCoursesSuccess(courses) {
 }
 
 export function loadCourses() {
-  //
+  // obtener todos los cursos
   return (dispatch) => {
     return courseApi.getAllCourses().then(courses => {
       dispatch(loadCoursesSuccess(courses))
-        .catch(error => {
-          throw(error);
-        });
-    });
+    })
+      .catch(error => {
+        throw(error);
+      });
   };
 }
