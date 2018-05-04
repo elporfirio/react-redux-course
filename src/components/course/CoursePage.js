@@ -10,35 +10,35 @@ class CoursePage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      course: {title: ''}
-    };
-
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onClickSave = this.onClickSave.bind(this);
+    // this.state = {
+    //   course: {title: ''}
+    // };
+    //
+    // this.onTitleChange = this.onTitleChange.bind(this);
+    // this.onClickSave = this.onClickSave.bind(this);
   }
 
   /**** END INITAL CREATE PROPERTIES ******/
 
   /*** CHILD METHODS ***/
-  onTitleChange(event) {
-    const course = this.state.course;
-    course.title = event.target.value;
-    this.setState({course: course});
-  }
-
-  onClickSave() {
-    console.log('Saving' + this.state.course.title);
-    // sin map to dispatch del MODO 1
-    // this.props.dispatch(courseActions.createCourse(this.state.course));
-
-    // MODO 2
-    // this.props.createCourse(this.state.course);
-
-    // MODO 3
-    this.props.actions.createCourse(this.state.course);
-  }
-
+  // onTitleChange(event) {
+  //   const course = this.state.course;
+  //   course.title = event.target.value;
+  //   this.setState({course: course});
+  // }
+  //
+  // onClickSave() {
+  //   console.log('Saving' + this.state.course.title);
+  //   // sin map to dispatch del MODO 1
+  //   // this.props.dispatch(courseActions.createCourse(this.state.course));
+  //
+  //   // MODO 2
+  //   // this.props.createCourse(this.state.course);
+  //
+  //   // MODO 3
+  //   this.props.actions.createCourse(this.state.course);
+  // }
+  //
   courseRow(course, index){
     return <div key={index}>{course.title}</div>;
   }
@@ -52,9 +52,9 @@ class CoursePage extends React.Component {
       <div>
         <h1>Cursos</h1>
         {this.props.courses.map(this.courseRow)}
-        <input type={'text'} onChange={this.onTitleChange}
-               value={this.state.course.title}/>
-        <button onClick={this.onClickSave}>Guardar</button>
+        {/*<input type={'text'} onChange={this.onTitleChange}*/}
+               {/*value={this.state.course.title}/>*/}
+        {/*<button onClick={this.onClickSave}>Guardar</button>*/}
       </div>
     );
   }
