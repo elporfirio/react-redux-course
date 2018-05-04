@@ -14,9 +14,11 @@ import {Provider} from 'react-redux';
 
 // Actions
 import {loadCourses} from './actions/CourseActions';
+import {loadAuthors} from './actions/authorActions';
 
 const store = configureStore();
 store.dispatch(loadCourses());
+store.dispatch(loadAuthors());
 
 
 render(

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux'; // MODO 3
 
 import * as courseActions from '../../actions/CourseActions';
+import {browserHistory} from 'react-router';
 
 // Templating
 import CourseList from './CourseList';
@@ -12,6 +13,8 @@ class CoursePage extends React.Component {
   /**** INITAL CREATE PROPERTIES ******/
   constructor(props, context) {
     super(props, context);
+
+    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
 
     // this.state = {
     //   course: {title: ''}
@@ -46,6 +49,9 @@ class CoursePage extends React.Component {
     return <div key={index}>{course.title}</div>;
   }
 
+  redirectToAddCoursePage(){
+    browserHistory.push('/course');
+  }
   /*** END CHILD METHODS ***/
 
 
@@ -54,6 +60,7 @@ class CoursePage extends React.Component {
     return (
       <div>
         <h1>Cursos</h1>
+        <button onClick={this.redirectToAddCoursePage}>Crear nuevo</button>
         <CourseList courses={this.props.courses}/>
 
         {/*// Old list*/}
