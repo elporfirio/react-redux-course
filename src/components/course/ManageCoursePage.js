@@ -20,16 +20,26 @@ class ManageCoursePage extends React.Component {
 
   }
 
-  updateCourseState(event){
+  // corre cada vez que se detectan cambios a veces cuando no
+  componentWillReceiveProps(nextProps) {
+    if (this.props.course.id !== nextProps.course.id) {
+      this.setState({course: Object.assign({}, nextProps.course)})
+    }
+  }
+
+  updateCourseState(event) {
     const field = event.target.name;
     let course = this.state.course;
     course[field] = event.target.value;
     return this.setState({course: course});
   }
 
-  saveCourse(event){
+  saveCourse(event) {
     event.preventDefault();
     this.props.actions.saveCourse(this.state.course);
+
+    //Redirect
+    this.context.router.push('/courses');
   }
 
   render() {
@@ -40,8 +50,8 @@ class ManageCoursePage extends React.Component {
           course={this.state.course}
           errors={this.state.errors}
 
-        onChange={this.updateCourseState}
-        onSave={this.saveCourse}/>
+          onChange={this.updateCourseState}
+          onSave={this.saveCourse}/>
       </div>
     );
   }
@@ -54,7 +64,19 @@ ManageCoursePage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
+// PAra el redirect
+ManageCoursePage.contextTypes = {
+  router: PropTypes.object
+};
+
+function getCourseById(courses, id) {
+  const course = courses.find(course => course.id === id);
+  return course || null;
+}
+
 function mapStateToProps(state, ownProps) {
+  const courseId = ownProps.params.id;
+
   let course = {
     id: '',
     watchHref: '',
@@ -63,6 +85,10 @@ function mapStateToProps(state, ownProps) {
     length: '',
     category: ''
   };
+
+  if (courseId && state.courses.length > 0) {
+    course = getCourseById(state.courses, courseId);
+  }
 
   // translate data to new strcutrure
   const authorFormattedForDropdown = state.authors.map(author => {
